@@ -588,6 +588,16 @@ impl<'bump, T: 'bump> Vec<'bump, T> {
         }
     }
 
+    /// Construct a zeroed vec with specified capacity.
+    /// Set length to be capacity.
+    #[inline]
+    pub fn with_capacity_zeroed_in(capacity: usize, bump: &'bump Bump) -> Vec<'bump, T> {
+        Vec {
+            buf: RawVec::with_capacity_zeroed_in(capacity, bump),
+            len: capacity,
+        }
+    }
+
     /// Construct a new `Vec` from the given iterator's items.
     ///
     /// # Examples
